@@ -1,0 +1,15 @@
+This library has been provided by Leon Barrett (@leonbarrett) to provide a simple and clean way to interact with the PayPal NVP API. It builds upon concepts from the Code Igniter PayPal Library (v. 0.1) by http://aroussi.com/ci/paypal_lib.
+
+This library assumes that you have some prior knowledge of the PayPal API. More information can be found on the PayPal API reference pages.
+
+It should be noted that this library isn't the magic answer to your PayPal solution, you will need to be comfortable with PHP, CI and the PayPal API!
+
+This package consists of the following files
+
+Config > autoload.php - used to auto load the libraries and the helper | paypallib_config - used to hold your API credentails.
+Controllers > demo.php - used to demonstrate using the library to display the balance of the current PayPal account.
+Helpers > paypal_helper.php - used to display any errors returned from the API call.
+Libraries > paypal_api_lib.php - used to interact with the API, make a call and get a response | paypal_lib.php - used to receive IPN notifications from PayPal.
+Please note the library requires CI 1.7.2 and higher
+
+For more information please see http://www.leonbarrett.com/code/paypal/
