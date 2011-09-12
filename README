@@ -13,3 +13,5 @@ Libraries > paypal_api_lib.php - used to interact with the API, make a call and 
 Please note the library requires CI 1.7.2 and higher
 
 For more information please see http://www.leonbarrett.com/code/paypal/
+
+Note: It should be mentioned that logging should only be enabled when testing this code. In production, logging should be turned off!
