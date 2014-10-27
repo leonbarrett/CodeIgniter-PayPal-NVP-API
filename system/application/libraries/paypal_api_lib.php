@@ -14,7 +14,6 @@ class Paypal_Api_Lib {
 	{
 		
 		$this->CI =& get_instance();
-		//$this->CI->load->config('paypallib_config');
 		
 		$this->nvp_log_file = $this->CI->config->item('paypal_lib_nvp_log_file');
 		$this->do_log = $this->CI->config->item('paypal_lib_log');
@@ -55,7 +54,7 @@ class Paypal_Api_Lib {
 		
 		$this->log_nvp_results(false);
 		
-		show_error('Failed to connect to Payment Gateway. Please try again');
+		show_error('Failed to connect to the payment gateway. Please try again in a moment.');
 		}
 		else
 		{
@@ -110,7 +109,7 @@ class Paypal_Api_Lib {
 			
 		}else{
 		
-			$this->log_nvp_results(true);
+			$this->log_nvp_results(true, $method);
 		
 			return true;
 			
@@ -145,24 +144,30 @@ class Paypal_Api_Lib {
 	}
 	
 	
-	function log_nvp_results($success) 
-	{
-		if (!$this->do_log) return;
-
-		$text = '['.date('m/d/Y g:i A').'] - '; 
-
-		if ($success) $text .= "SUCCESS!\n";
-		else $text .= "FAIL: SEE LOGS\n";
-
-		$text .= "NVP POST Vars from Paypal:\n";
-		foreach ($this->nvp_data as $key=>$value)
-			$text .= "$key=$value\n";
-
-		$fp=fopen($this->nvp_log_file,'a');
-		fwrite($fp, $text . "\n\n"); 
-
-		fclose($fp);
-	}
+    	function log_nvp_results($success, $method) 
+   	 {
+	        if (!$this->do_log) return;
+	
+	        $text = '['.date('m/d/Y H:i:s TO').'] - '; 
+	
+	        if ($success) $text .= "SUCCESS!\n";
+	        else $text .= "FAIL: SEE LOGS\n";
+	
+	        $text .= "PayPal NVP API request:\n";
+	        $text .= "METHOD=$method\n";
+	        foreach ($this->nvps as $key=>$value)
+	        
+	            $text .= "$key=$value\n";
+	            
+	        $text .= "\nPayPal NVP API response:\n";
+	        foreach ($this->nvp_data as $key=>$value)
+	            $text .= "$key=$value\n";
+	
+	        $fp=fopen($this->nvp_log_file,'a');
+	        fwrite($fp, $text . "\n\n\n"); 
+	
+	        fclose($fp);
+   	 }
 	
 	
 	
